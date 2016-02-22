@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -52,7 +52,7 @@ gem 'cancancan'
 gem 'font-awesome-rails'
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
-gem 'letter_opener'
+
 group :development, :test do
   gem 'pry'
   gem 'rspec-rails', '~> 3.4.2'

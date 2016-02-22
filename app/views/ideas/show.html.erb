@@ -1,0 +1,10 @@
+<h1 class = "title text-lg-center"><%= @idea.title %></h1>
+<div class="row">
+  <div class="form-group-lg col-md-6 col-md-offset-3">
+    <p> <%= @idea.body %></p>
+    <% if can? :manage, @idea %>
+    <p><%= link_to "edit", edit_idea_path(@idea) %> --
+    <%= link_to "delete", idea_path(@idea), method: :delete, data: { confirm: "Are you sure?"} %></p>
+    <% end %>
+  </div>
+</div>

@@ -25,13 +25,6 @@ class IdeasController < ApplicationController
   end
 
   def show
-    # @task = Task.new
-    # @discussion = Discussion.new
-    # @tasks = @idea.tasks.order("created_at DESC")
-    # display complete/incomplete tasks
-    # @tasks_done = @idea.tasks.where(["done = ?", true]).order("created_at DESC")
-    # @tasks_not_done = @idea.tasks.where(["done = ?", false]).order("created_at DESC")
-    # @discussions = @idea.discussions.order("created_at DESC")
   end
 
   def edit

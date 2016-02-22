@@ -6,5 +6,16 @@
     <p><%= link_to "edit", edit_idea_path(@idea) %> --
     <%= link_to "delete", idea_path(@idea), method: :delete, data: { confirm: "Are you sure?"} %></p>
     <% end %>
+    <!-- Create A Like-->
+<%# user's cannot like their own idea %>
+<% if @idea.user != current_user  %>
+  <% like = @idea.like_for(current_user) %>
+    <% if like %>
+      <%= link_to fa_icon("thumbs-up"), idea_like_path(@idea, like), method: :delete  %>
+      <% else %>
+      <%= link_to fa_icon("thumbs-o-up"), idea_likes_path(@idea), method: :post %>
+    <% end %>
+  <%= @idea.likes.count %>
+<% end %>
   </div>
 </div>

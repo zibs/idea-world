@@ -25,6 +25,7 @@ class IdeasController < ApplicationController
   end
 
   def show
+    @members = @idea.member_users
   end
 
   def edit

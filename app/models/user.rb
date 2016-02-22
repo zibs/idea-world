@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   has_many :liked_ideas, through: :likes, source: :question
 
+  has_many :members, dependent: :destroy
+  has_many :member_of_ideas, through: :members, source: :idea
+
   VALID_EMAIL_REGEX = /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :password, length: { minimum: 5 }, on: :create
   validates :first_name, presence: true

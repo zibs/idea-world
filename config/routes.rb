@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :edit, :update, :create]
   resources :ideas do
     resources :likes, only: [:create, :destroy]
+    resources :members, only: [:create, :destroy]
   end
 
   resources :sessions, only: [:new, :create] do

@@ -1,21 +1,48 @@
 <h1 class = "title text-lg-center"><%= @idea.title %></h1>
-<div class="row">
-  <div class="form-group-lg col-md-6 col-md-offset-3">
+<section class="row">
+  <section class="form-group-lg col-md-6 col-md-offset-3">
     <p> <%= @idea.body %></p>
     <% if can? :manage, @idea %>
     <p><%= link_to "edit", edit_idea_path(@idea) %> --
     <%= link_to "delete", idea_path(@idea), method: :delete, data: { confirm: "Are you sure?"} %></p>
     <% end %>
+
     <!-- Create A Like-->
 <%# user's cannot like their own idea %>
-<% if @idea.user != current_user  %>
-  <% like = @idea.like_for(current_user) %>
-    <% if like %>
-      <%= link_to fa_icon("thumbs-up"), idea_like_path(@idea, like), method: :delete  %>
-      <% else %>
-      <%= link_to fa_icon("thumbs-o-up"), idea_likes_path(@idea), method: :post %>
+<section class="like-idea">
+    <% if @idea.user != current_user  %>
+      <% like = @idea.like_for(current_user) %>
+        <% if like %>
+          <%= link_to fa_icon("thumbs-up"), idea_like_path(@idea, like), method: :delete  %>
+          <% else %>
+          <%= link_to fa_icon("thumbs-o-up"), idea_likes_path(@idea), method: :post %>
+        <% end %>
+      <p> <strong>Likes:</strong> <%= @idea.likes.count %></p>
     <% end %>
-  <%= @idea.likes.count %>
-<% end %>
-  </div>
-</div>
+</section>
+    <!-- Join an Idea -->
+    <%# user's cannot become a member of their own group %>
+    <section class="become-member">
+      <% if @idea.user != current_user  %>
+      <% member = @idea.member_of(current_user) %>
+        <% if member %>
+          <%= link_to "Leave Group", idea_member_path(@idea, member), method: :delete  %>
+          <% else %>
+          <%= link_to "Become a Member", idea_members_path(@idea), method: :post %>
+        <% end %>
+      <p><strong>Members:</strong> <%= @idea.members.count %></p>
+      <% end %>
+    </section>
+    <section class="list-members">
+
+      <% if @members %>
+        <h2 class="title">Current Members</h2>
+        <% @members.each do |member| %>
+          <section class="member">
+            <p> <%= member.full_name %> </p>
+            <% end %>
+          </section>
+          <% end %>
+    </section>
+  </section>
+</section>

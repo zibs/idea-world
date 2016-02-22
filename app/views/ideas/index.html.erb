@@ -6,7 +6,11 @@
     <table class="table table-striped">
       <% @ideas.each do |idea| %>
         <tr>
-          <td><%= link_to idea.title, idea_path(idea) %> by <%= idea.user_full_name %></td>
+          <td>
+            <%= link_to idea.title, idea_path(idea) %>
+            by <%= idea.user_full_name %>
+            <span class = "text-muted">(<%= idea.likes.count %> likes)</span>
+          </td>
         </tr>
       <% end %>
     </table>

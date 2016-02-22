@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_many :ideas, dependent: :destroy
+  has_many :comments, dependent: :nullify
 
   has_many :likes, dependent: :destroy
   has_many :liked_ideas, through: :likes, source: :question

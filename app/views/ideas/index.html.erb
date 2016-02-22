@@ -1,4 +1,4 @@
-<h1 class = "text-lg-center title">All Projects (<%= @ideas.length %>)</h1>
+<h1 class = "text-lg-center title">All Ideas (<%= @ideas.length %>)</h1>
 
 <% if @ideas %>
 <div class="row">
@@ -9,7 +9,7 @@
           <td>
             <%= link_to idea.title, idea_path(idea) %>
             by <%= idea.user_full_name %>
-            <span class = "text-muted">(<%= idea.likes.count %> likes)</span>
+            <span class = "text-muted">(likes: <%= idea.likes.count %> - members: <%= idea.member_users.count  %>)</span>
           </td>
         </tr>
       <% end %>

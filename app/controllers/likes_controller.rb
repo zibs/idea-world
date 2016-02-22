@@ -3,8 +3,9 @@ class LikesController < ApplicationController
 
   def create
     idea = Idea.find(params[:idea_id])
-    like = Like.new(idea: idea, user: current_user)
-    if like.save && ( idea.user != current_user )
+    @like = Like.new(idea: idea, user: current_user)
+    if @like.save && ( idea.user != current_user )
+      IdeasMailer.notify_owner_of_like(@like).deliver_later
       redirect_to idea, flash: { info: "Liked" }
     else
       redirect_to idea, flash: { info: "Already Liked"}

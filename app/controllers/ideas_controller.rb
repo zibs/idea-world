@@ -26,6 +26,8 @@ class IdeasController < ApplicationController
 
   def show
     @members = @idea.member_users
+    @comment = Comment.new
+    @comments = @idea.comments
   end
 
   def edit
@@ -49,7 +51,7 @@ class IdeasController < ApplicationController
       private
 
         def idea_params
-          params.require(:idea).permit([:title, :body])
+          params.require(:idea).permit([:title, :body, :image])
         end
 
         def find_idea

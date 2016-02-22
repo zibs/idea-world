@@ -5,11 +5,16 @@ Rails.application.routes.draw do
   resources :ideas do
     resources :likes, only: [:create, :destroy]
     resources :members, only: [:create, :destroy]
+    resources :comments, only: [:create, :edit, :destroy]
   end
+
+  resources :comments, only: [:update, :edit]
 
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection
   end
+
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

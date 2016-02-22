@@ -98,7 +98,8 @@
           <% @comments.each do |comment| %>
           <li>
             <p><%= comment.body %> <span class="text-muted">(<%= comment.user_full_name %>)</span>
-            <% if can? :manage, comment  %>
+              
+            <% if ( (can? :manage, comment) || (can? :destroy, comment.idea) ) %>
               <%= link_to "Edit", edit_idea_comment_path(@idea, comment) %>
               <%= link_to "Delete", [@idea, comment], method: :delete, data: {confirm: "Are you sure?"} %>
               <% end %>

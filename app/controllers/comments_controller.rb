@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :find_comment, only: [:edit, :update]
   before_action :authenticate_user
+  before_action :authorize_user, only: [:destroy]
 
   def create
     @idea = Idea.find(params[:idea_id])
@@ -44,7 +45,7 @@ class CommentsController < ApplicationController
       end
 
       def authorize_user
-        unless can? :manage, @comment
+        unless ((can? :manage, @comment) || (can? :destroy, @comment))
           redirect_to root_path , flash: { info: "Access Denied" }
         end
       end
